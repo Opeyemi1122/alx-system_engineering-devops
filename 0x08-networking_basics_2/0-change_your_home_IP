@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#configures an Ubuntu server to resolve IP addresses
+# Check if running inside Docker
+if [ -f /.dockerenv ]; then
+    echo "Running inside Docker."
+else
+    echo "This script should be executed inside Docker."
+    exit 1
+fi
+
+# Modify /etc/hosts file
+echo "127.0.0.2 localhost" | sudo tee -a /etc/hosts
+echo "8.8.8.8 facebook.com" | sudo tee -a /etc/hosts
+
+echo "Configuration completed."
+
